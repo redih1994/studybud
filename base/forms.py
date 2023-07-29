@@ -1,7 +1,13 @@
 from django.forms import ModelForm
-from .models import Room
-from django.contrib.auth.models import User
+from .models import Room, User
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
+
+class MyUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['name', 'username', 'email', 'password1', 'password2']
 
 class RoomForm(ModelForm):
     class Meta:
@@ -14,7 +20,7 @@ class UserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, required=False)
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'email', 'password', 'avatar', 'bio']
 
     def save(self, commit=True):
         user = super().save(commit=False)
