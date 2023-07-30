@@ -35,7 +35,8 @@ def loginPage(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, "Username OR password does not exist.")
+            messages.error(request, 'Username OR password does not exit')
+
     context = {'page': page}
     return render(request, 'base/login_register.html', context)
 
@@ -68,7 +69,7 @@ def home(request):
         Q(topic__name__icontains=q) |
         Q(name__icontains=q) |
         Q(description__icontains=q)
-    )
+    ).order_by('updated')
     room_count = rooms.count()
     topics = Topic.objects.annotate(room_count=Count('room')).order_by('-room_count')[0:5]
     topic_count = topics.count()
@@ -172,17 +173,19 @@ def updateUser(request):
     form = UserForm(instance=user)
 
     if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES, instance=user,)
+        form = UserForm(request.POST, request.FILES, instance=user, )
         if form.is_valid():
             form.save(commit=True)
             return redirect('user-profile', pk=user.id)
 
     return render(request, 'base/update-user.html', {'form': form})
 
+
 def topicsPage(request):
     q = request.GET.get('q') if request.GET.get('q') is not None else ''
     topics = Topic.objects.filter(name__icontains=q)
     return render(request, 'base/topics.html', {'topics': topics})
+
 
 def activityPage(request):
     room_messages = Message.objects.all()
