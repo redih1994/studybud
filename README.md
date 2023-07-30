@@ -6,7 +6,7 @@
 
 The Discord Clone project is a web application built with Django in the backend and HTML/CSS in the frontend. It aims to replicate some functionalities of the popular communication platform Discord. The application allows users to create accounts, log in, and authenticate using their credentials. It features a comprehensive RESTful API powered by Django Rest Framework (DRF) that enables full CRUD (Create, Read, Update, Delete) operations on various endpoints.
 
-Key Features:
+### Key Features:
 
 - User Authentication:
 
@@ -20,7 +20,7 @@ Users can upload and use avatars to personalize their profiles.
 
 Users can create topics related to tech-related discussions and subjects.
 Each topic can have multiple rooms for specific discussions within that topic.
-Room Participants and Messages:
+- Room Participants and Messages:
 
 Users can participate in different rooms within a topic.
 Rooms host discussions where participants can exchange messages.
@@ -36,59 +36,44 @@ Frontend and Styling:
 Configure Token-Based Authentication: Implement token-based authentication to secure the application's API endpoints and ensure user data protection.
 Enhance User Profiles: Provide users with more options to customize their profiles and add additional information, enhancing the community experience.
 Real-Time Communication: Implement real-time communication features, such as live chat and notifications, using technologies like WebSockets or Django Channels.
-Endpoints:
+### Endpoints:
 
-/api/topics/: Create, retrieve, update, and delete topics.
-/api/rooms/: Create, retrieve, update, and delete rooms within topics.
-/api/user/: Access user profiles and information, including avatars, names, and bios.
-/api/message/: Create, retrieve, update, and delete messages within rooms.
+- /api/topics/: Create, retrieve, update, and delete topics.
+- /api/rooms/: Create, retrieve, update, and delete rooms within topics.
+- /api/user/: Access user profiles and information, including avatars, names, and bios.
+- /api/message/: Create, retrieve, update, and delete messages within rooms.
 
 
 ### Cloning the repository
 
---> Clone the repository using the command below :
-```bash
-git clone https://github.com/divanov11/StudyBud.git
+1. Clone the repository:
 
-```
+        git clone <repository_url>
 
---> Move into the directory where we have the project files : 
-```bash
-cd StudyBud
+2. Create and activate a virtual environment (optional, but recommended):
 
-```
+       python3 -m venv env
 
---> Create a virtual environment :
-```bash
-# Let's install virtualenv first
-pip install virtualenv
+       source env/bin/activate # On macOS/Linux
 
-# Then we create our virtual environment
-virtualenv envname
+       .\env\Scripts\activate # On Windows
 
-```
+3. Install the project dependencies:
 
---> Activate the virtual environment :
-```bash
-envname\scripts\activate
+       pip install -r requirements.txt
 
-```
+4. Run database migrations:
+    
+       python manage.py migrate
 
---> Install the requirements :
-```bash
-pip install -r requirements.txt
+5. Create a superuser (admin) for accessing the admin interface:
+    
+         python manage.py createsuperuser
 
-```
+6. Start the development server:
 
-#
-
-### Running the App
-
---> To run the App, we use :
-```bash
-python manage.py runserver
-
-```
+       python manage.py runserver
+7. Access the application in your web browser at `http://localhost:8000/`.
 
 > ⚠ Then, the development server will be started at http://127.0.0.1:8000/
 
